@@ -5,8 +5,8 @@ namespace Unfair_Search_Space
 {
     class Hangman : GameLoop<string, char, int>
     {
-        const int WordSize = 5;
-        const int Attempts = 15;
+        const int WordSize = 6;
+        const char unknownLetter = '?';
 
         public override List<string> GetMasterList()
         {
@@ -22,24 +22,27 @@ namespace Unfair_Search_Space
         }
 
         List<char> mistakes;
-        string guessedWords;
+        string guessedWord;
 
         public override void ResetGame()
         {
-            guessedWords = "";
-            for (int i = 0; i < WordSize; i++) guessedWords += "?";
+            guessedWord = "";
+            for (int i = 0; i < WordSize; i++) guessedWord += unknownLetter;
             mistakes = new List<char>();
         }
 
-        public override bool GameOver(List<string> options)
+        public override List<char> GetPossibleGuesses()
         {
-            return mistakes.Count == Attempts || !guessedWords.Contains("?");
+            List<char> guesses = new List<char>();
+            for (char c = 'a'; c <= 'z'; c++)
+                guesses.Add(c);
+            return guesses;
         }
 
         public override char AskForGuess()
         {
             Console.WriteLine();
-            Console.WriteLine("" + guessedWords);
+            Console.WriteLine("" + guessedWord);
             if (mistakes.Count > 0)
                 Console.WriteLine("Incorrect letters: " + string.Join(", ", mistakes));
             char letter = '\0';
@@ -52,7 +55,36 @@ namespace Unfair_Search_Space
             return letter;
         }
 
-        public override int SortOption(string option, char guess)
+        public override int AskForFeedback(char guess)
+        {
+            Console.WriteLine(guessedWord);
+            Console.WriteLine($"My guess is '{guess}'");
+            string nextWord = "";
+            int result = 0;
+            for (int i = 0; i < WordSize; i++)
+            {
+                bool foundChar = false;
+                if (guessedWord[i] == unknownLetter)
+                {
+                    Console.WriteLine($"Is it at index {i}? (y/n)");
+                    foundChar = Console.ReadKey().KeyChar == 'y';
+                }
+                if (foundChar)
+                {
+                    result |= 1 << i;
+                    nextWord += guess;
+                }
+                else
+                {
+                    nextWord += guessedWord[i];
+                }
+                Console.WriteLine();
+            }
+            guessedWord = nextWord;
+            return result;
+        }
+
+        public override int GetFeedback(string option, char guess)
         {
             int position = 0;
             for (int i = 0; i < WordSize; i++)
@@ -68,8 +100,8 @@ namespace Unfair_Search_Space
                 if ((feedback & (1 << i)) != 0)
                     nextGuess += letter;
                 else
-                    nextGuess += guessedWords[i];
-            guessedWords = nextGuess;
+                    nextGuess += guessedWord[i];
+            guessedWord = nextGuess;
             if (feedback == 0)
             {
                 int i = 0;
@@ -80,7 +112,6 @@ namespace Unfair_Search_Space
 
         public override void FinishGame(List<string> options)
         {
-            Console.WriteLine(mistakes.Count == Attempts ? "You lose" : "You win!");
             Console.WriteLine("The word was " + options[0]);
             Console.WriteLine("---------------------------");
         }

@@ -1,6 +1,6 @@
 ﻿namespace Unfair_Search_Space
 {
-    partial class Mastermind
+    partial class MastermindForm
     {
         /// <summary>
         /// Required designer variable.
