@@ -74,12 +74,14 @@ namespace Examples
 
         class Player : Game<Color[], Color[], (int correctPosition, int incorrectPosition)>
         {
-            public override List<Color[]> GetPossibleGuesses()
+            protected override (int correctPosition, int incorrectPosition) FeedbackThatIsConsideredAWin { get; } = (4, 0);
+
+            protected override List<Color[]> GetPossibleGuesses()
             {
                 throw new NotImplementedException();
             }
 
-            public override (int, int) GetFeedback(Color[] possibility, Color[] guess)
+            protected override (int, int) GetFeedback(Color[] possibility, Color[] guess)
             {
                 int correctPosition = 0;
                 for (int i = 0; i < holes; i++)
@@ -100,7 +102,9 @@ namespace Examples
         const int holes = 4;
         static string[] allColours = { "red", "orange", "yellow", "green", "blue", "purple", "pink", "white" };
 
-        public override (int, int) AskForFeedback(string[] guess)
+        protected override (int, int) FeedbackThatIsConsideredAWin => (4, 0);
+
+        protected override (int, int) AskForFeedback(string[] guess)
         {
             Console.WriteLine("My guess is " + string.Join(" ", guess));
             Console.Write("How many were correct and in the right position?\t");
@@ -112,17 +116,17 @@ namespace Examples
             return (correctPosition, incorrectPosition);
         }
 
-        public override string[] AskForGuess()
+        protected override string[] AskForGuess()
         {
             throw new NotImplementedException();
         }
 
-        public override void FinishGame(List<string[]> options)
+        protected override void FinishGame(List<string[]> options)
         {
             Console.WriteLine("The solution was " + string.Join(" ", options[0]));
         }
 
-        public override (int, int) GetFeedback(string[] possibility, string[] guess)
+        protected override (int, int) GetFeedback(string[] possibility, string[] guess)
         {
             int correctPosition = 0;
             for (int i = 0; i < holes; i++)
@@ -134,7 +138,7 @@ namespace Examples
             return (correctPosition, incorrectPosition);
         }
 
-        public override List<string[]> GetMasterList()
+        protected override List<string[]> GetMasterList()
         {
             Random rnd = new Random();
             List<string[]> masterlist = new List<string[]>();
@@ -159,18 +163,18 @@ namespace Examples
             return masterlist;
         }
 
-        public override List<string[]> GetPossibleGuesses()
+        protected override List<string[]> GetPossibleGuesses()
         {
             return GetMasterList();
         }
 
-        public override void GiveFeedback(string[] guess, (int, int) feedback)
+        protected override void GiveFeedback(string[] guess, (int, int) feedback)
         {
             Console.WriteLine($"{feedback.Item1} are in the correct position");
             Console.WriteLine($"{feedback.Item2} are correct but in the wrong position");
         }
 
-        public override void ResetGame()
+        protected override void ResetGame()
         {
             Console.WriteLine("Thinking...");
         }

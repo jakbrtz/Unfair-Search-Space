@@ -9,7 +9,7 @@ namespace Examples
         const int WordSize = 6;
         const char unknownLetter = '?';
 
-        public override List<string> GetMasterList()
+        protected override List<string> GetMasterList()
         {
             Console.WriteLine("Downloading words...");
             string contents;
@@ -25,14 +25,16 @@ namespace Examples
         List<char> mistakes;
         string guessedWord;
 
-        public override void ResetGame()
+        protected override int FeedbackThatIsConsideredAWin => 1 << WordSize - 1;
+
+        protected override void ResetGame()
         {
             guessedWord = "";
             for (int i = 0; i < WordSize; i++) guessedWord += unknownLetter;
             mistakes = new List<char>();
         }
 
-        public override List<char> GetPossibleGuesses()
+        protected override List<char> GetPossibleGuesses()
         {
             List<char> guesses = new List<char>();
             for (char c = 'a'; c <= 'z'; c++)
@@ -40,7 +42,7 @@ namespace Examples
             return guesses;
         }
 
-        public override char AskForGuess()
+        protected override char AskForGuess()
         {
             Console.WriteLine();
             Console.WriteLine("" + guessedWord);
@@ -56,7 +58,7 @@ namespace Examples
             return letter;
         }
 
-        public override int AskForFeedback(char guess)
+        protected override int AskForFeedback(char guess)
         {
             Console.WriteLine(guessedWord);
             Console.WriteLine($"My guess is '{guess}'");
@@ -85,7 +87,7 @@ namespace Examples
             return result;
         }
 
-        public override int GetFeedback(string option, char guess)
+        protected override int GetFeedback(string option, char guess)
         {
             int position = 0;
             for (int i = 0; i < WordSize; i++)
@@ -94,7 +96,7 @@ namespace Examples
             return position;
         }
 
-        public override void GiveFeedback(char letter, int feedback)
+        protected override void GiveFeedback(char letter, int feedback)
         {
             string nextGuess = "";
             for (int i = 0; i < WordSize; i++)
@@ -111,7 +113,7 @@ namespace Examples
             }
         }
 
-        public override void FinishGame(List<string> options)
+        protected override void FinishGame(List<string> options)
         {
             Console.WriteLine("The word was " + options[0]);
             Console.WriteLine("---------------------------");

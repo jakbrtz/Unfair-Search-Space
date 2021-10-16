@@ -9,13 +9,13 @@ namespace Unfair_Search_Space
         /// <summary>
         /// Create a list of every possible guess that the computer could make
         /// </summary>
-        public abstract List<Tguess> GetPossibleGuesses();
+        protected abstract List<Tguess> GetPossibleGuesses();
         /// <summary>
         /// Suppose the possibility was the actual solution, what feedback would be given?
         /// </summary>
         /// <param name="possibility">A possible solution</param>
         /// <param name="guess">What did the user just guess?</param>
-        public abstract Tfeedback GetFeedback(Tsolution possibility, Tguess guess);
+        protected abstract Tfeedback GetFeedback(Tsolution possibility, Tguess guess);
 
         /// <summary>
         /// Gives feedback to the user's guess, and updates the list of possible solutions
@@ -28,10 +28,15 @@ namespace Unfair_Search_Space
             foreach (var possibility in domain)
             {
                 var key = GetFeedback(possibility, guess);
+                if (key.Equals(FeedbackThatIsConsideredAWin))
+                    continue;
                 if (!possibleOptions.ContainsKey(key))
                     possibleOptions[key] = new List<Tsolution>();
                 possibleOptions[key].Add(possibility);
             }
+
+            if (possibleOptions.Count == 0) return FeedbackThatIsConsideredAWin;
+
             bool found = false;
             Tfeedback best = default;
             foreach (var kvp in possibleOptions)
@@ -78,6 +83,8 @@ namespace Unfair_Search_Space
 
             return bestGuess;
         }
+
+        protected abstract Tfeedback FeedbackThatIsConsideredAWin { get; }
     }
 
     public abstract class GameLoop<Tsolution, Tguess, Tfeedback> : Game<Tsolution, Tguess, Tfeedback>
@@ -85,30 +92,30 @@ namespace Unfair_Search_Space
         /// <summary>
         /// Prepares a master list of all possible solutions
         /// </summary>
-        public abstract List<Tsolution> GetMasterList();
+        protected abstract List<Tsolution> GetMasterList();
         /// <summary>
         /// Prepare variables (except for master list) that need to be set at the start of the game
         /// </summary>
-        public abstract void ResetGame();
+        protected abstract void ResetGame();
         /// <summary>
         /// Gets a guess from the user
         /// </summary>
-        public abstract Tguess AskForGuess();
+        protected abstract Tguess AskForGuess();
         /// <summary>
         /// Ask the user for information based on the computer's guess
         /// </summary>
-        public abstract Tfeedback AskForFeedback(Tguess guess);
+        protected abstract Tfeedback AskForFeedback(Tguess guess);
         /// <summary>
         /// Translates feedback so the user can understand it
         /// </summary>
         /// <param name="guess">The user's recent guess</param>
         /// <param name="feedback">The feedback from the guess</param>
-        public abstract void GiveFeedback(Tguess guess, Tfeedback feedback);
+        protected abstract void GiveFeedback(Tguess guess, Tfeedback feedback);
         /// <summary>
         /// Action to be performed when the game is over
         /// </summary>
         /// <param name="options">Remaining possible solutions</param>
-        public abstract void FinishGame(List<Tsolution> options);
+        protected abstract void FinishGame(List<Tsolution> options);
 
         /// <summary>
         /// Play the game, where the computer picks the combination
@@ -124,6 +131,7 @@ namespace Unfair_Search_Space
                 {
                     var guess = AskForGuess();
                     var best = ProcessGuess(guess, ref options);
+                    if (best.Equals(FeedbackThatIsConsideredAWin)) break;
                     GiveFeedback(guess, best);
                 }
                 FinishGame(options);
