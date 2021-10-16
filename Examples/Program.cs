@@ -11,8 +11,10 @@ namespace Examples
             Console.WriteLine();
             Console.WriteLine("1. Hangman    - computer picks word");
             Console.WriteLine("2. Mastermind - computer picks combination");
-            Console.WriteLine("3. Hangman    - computer solves word");
-            Console.WriteLine("4. Mastermind - computer solves combination");
+            Console.WriteLine("3. Secret Pin - computer picks combination");
+            Console.WriteLine("4. Hangman    - computer solves word");
+            Console.WriteLine("5. Mastermind - computer solves combination");
+            
 
             switch (Console.ReadKey().KeyChar)
             {
@@ -30,12 +32,18 @@ namespace Examples
                     Application.Run(new MastermindForm());
                     break;
                 case '3':
+                    Console.WriteLine("A mockery of a form that I recently had to fill in");
+                    Console.WriteLine("To play, enter 4-digits pins until you fulfil the criteria");
+                    Console.ReadKey();
+                    new SecretPin().PlayCheater();
+                    break;
+                case '4':
                     Console.WriteLine("An example of a solver that should be able to beat the cheater at hangman");
                     Console.WriteLine("Start by picking a 6-letter word, then answer the questions with (y)es or (n)o");
                     Console.ReadKey();
                     new Hangman().PlayerSolver();
                     break;
-                case '4':
+                case '5':
                     Console.WriteLine("An example of a solver that should be able to beat the cheater at mastermind");
                     Console.WriteLine("Pick a combination, then answer the questions by typing in digits 0-4");
                     Console.ReadKey();
