@@ -5,7 +5,7 @@ In games like [Hangman](https://en.wikipedia.org/wiki/Hangman_(game)) and [Maste
 This program acts as the picked, but it waits until the very end of the game before it picks a word/combination, and then it acts like that was its plan all along.
 
 The program has [2 abstract classes](Unfair%20Search%20Space/Game.cs) to make it easier to reuse on other games:
-* DomainFilter - An important class with the bare minimum required to run the algorithm, along with a `ProcessGuess()` that decides what it should tell the user
+* Game - The core class with the bare minimum required to run the algorithm, along with a `ProcessGuess()` that decides what it should tell the user
 * GameLoop - a neat class which helps the programmer create a game by telling them to override many small functions
 
 These classes have 3 Type parameters:
