@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Unfair_Search_Space
+namespace Examples
 {
     public partial class MastermindRow : UserControl
     {

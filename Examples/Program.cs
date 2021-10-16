@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Unfair_Search_Space
+namespace Examples
 {
     class Program
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unfair_Search_Space;
 
-namespace Unfair_Search_Space
+namespace Examples
 {
     class Hangman : GameLoop<string, char, int>
     {

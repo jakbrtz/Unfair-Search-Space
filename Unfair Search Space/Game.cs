@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Unfair_Search_Space
 {
-    abstract class Game<Tsolution, Tguess, Tfeedback>
+    public abstract class Game<Tsolution, Tguess, Tfeedback>
     {
         /// <summary>
         /// Create a list of every possible guess that the computer could make
@@ -80,7 +80,7 @@ namespace Unfair_Search_Space
         }
     }
 
-    abstract class GameLoop<Tsolution, Tguess, Tfeedback> : Game<Tsolution, Tguess, Tfeedback>
+    public abstract class GameLoop<Tsolution, Tguess, Tfeedback> : Game<Tsolution, Tguess, Tfeedback>
     {
         /// <summary>
         /// Prepares a master list of all possible solutions

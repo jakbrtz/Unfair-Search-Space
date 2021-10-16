@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unfair Search Space", "Unfair Search Space\Unfair Search Space.csproj", "{D09CDC47-7EAB-489F-BA1C-042CDD21730C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{3FA33B93-8F99-4453-A09A-E57B6312CFB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unfair Search Space", "Unfair Search Space\Unfair Search Space.csproj", "{48925D66-BD9B-4385-9AE2-CC8023DDA89D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D09CDC47-7EAB-489F-BA1C-042CDD21730C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D09CDC47-7EAB-489F-BA1C-042CDD21730C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D09CDC47-7EAB-489F-BA1C-042CDD21730C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D09CDC47-7EAB-489F-BA1C-042CDD21730C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA33B93-8F99-4453-A09A-E57B6312CFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA33B93-8F99-4453-A09A-E57B6312CFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA33B93-8F99-4453-A09A-E57B6312CFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA33B93-8F99-4453-A09A-E57B6312CFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48925D66-BD9B-4385-9AE2-CC8023DDA89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48925D66-BD9B-4385-9AE2-CC8023DDA89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48925D66-BD9B-4385-9AE2-CC8023DDA89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48925D66-BD9B-4385-9AE2-CC8023DDA89D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

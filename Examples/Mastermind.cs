@@ -4,8 +4,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Unfair_Search_Space;
 
-namespace Unfair_Search_Space
+namespace Examples
 {
     public partial class MastermindForm : Form
     {

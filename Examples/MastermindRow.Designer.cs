@@ -1,4 +1,4 @@
-﻿namespace Unfair_Search_Space
+﻿namespace Examples
 {
     partial class MastermindRow
     {
