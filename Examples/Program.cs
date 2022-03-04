@@ -11,8 +11,10 @@ namespace Examples
             Console.WriteLine();
             Console.WriteLine("1. Hangman    - computer picks word");
             Console.WriteLine("2. Mastermind - computer picks combination");
-            Console.WriteLine("3. Hangman    - computer solves word");
-            Console.WriteLine("4. Mastermind - computer solves combination");
+            Console.WriteLine("3. Wordle     - computer picks word");
+            Console.WriteLine("4. Hangman    - computer solves word");
+            Console.WriteLine("5. Mastermind - computer solves combination");
+            Console.WriteLine("6. Wordle     - computer solves word");
 
             switch (Console.ReadKey().KeyChar)
             {
@@ -30,16 +32,27 @@ namespace Examples
                     Application.Run(new MastermindForm());
                     break;
                 case '3':
+                    Console.WriteLine("Another console app, except this time the feedback is more complex.");
+                    Console.WriteLine("To play, enter one word then press enter");
+                    Console.ReadKey();
+                    new Wordle().PlayCheater();
+                    break;
+                case '4':
                     Console.WriteLine("An example of a solver that should be able to beat the cheater at hangman");
                     Console.WriteLine("Start by picking a 6-letter word, then answer the questions with (y)es or (n)o");
                     Console.ReadKey();
                     new Hangman().PlayerSolver();
                     break;
-                case '4':
+                case '5':
                     Console.WriteLine("An example of a solver that should be able to beat the cheater at mastermind");
                     Console.WriteLine("Pick a combination, then answer the questions by typing in digits 0-4");
                     Console.ReadKey();
                     new MastermindConsole().PlayerSolver();
+                    break;
+                case '6':
+                    Console.WriteLine("An example of a solve that should be able to beat the cheater at Worlde");
+                    Console.ReadKey();
+                    new Wordle().PlayerSolver();
                     break;
             }
         }

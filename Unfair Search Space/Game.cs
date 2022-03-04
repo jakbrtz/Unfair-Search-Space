@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 namespace Unfair_Search_Space
 {
     public abstract class Game<Tsolution, Tguess, Tfeedback>
+        where Tfeedback : struct
     {
         /// <summary>
         /// Create a list of every possible guess that the computer could make
         /// </summary>
         protected abstract List<Tguess> GetPossibleGuesses();
         /// <summary>
-        /// Suppose the possibility was the actual solution, what feedback would be given?
+        /// Suppose the option was the actual solution, what feedback would be given?
         /// </summary>
         /// <param name="possibility">A possible solution</param>
         /// <param name="guess">What did the user just guess?</param>
@@ -88,6 +89,7 @@ namespace Unfair_Search_Space
     }
 
     public abstract class GameLoop<Tsolution, Tguess, Tfeedback> : Game<Tsolution, Tguess, Tfeedback>
+        where Tfeedback : struct
     {
         /// <summary>
         /// Prepares a master list of all possible solutions
