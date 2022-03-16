@@ -16,7 +16,7 @@ namespace Examples
             Console.WriteLine("Downloading words...");
             string contents;
             using (var wc = new System.Net.WebClient())
-                contents = wc.DownloadString(@"https://raw.githubusercontent.com/tabatkins/wordle-list/main/words");
+                contents = wc.DownloadString(@"https://gist.githubusercontent.com/cfreshman/a03ef2cba789d8cf00c08f767e0fad7b/raw/28804271b5a226628d36ee831b0e36adef9cf449/wordle-answers-alphabetical.txt");
             List<string> master = new List<string>();
             foreach (string line in contents.Split('\n'))
                 master.Add(line);
