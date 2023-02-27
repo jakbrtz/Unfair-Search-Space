@@ -15,6 +15,7 @@ namespace Examples
             Console.WriteLine("4. Hangman    - computer solves word");
             Console.WriteLine("5. Mastermind - computer solves combination");
             Console.WriteLine("6. Wordle     - computer solves word");
+            Console.WriteLine("7. Quiz       - computer solves solution");
 
             switch (Console.ReadKey().KeyChar)
             {
@@ -53,6 +54,11 @@ namespace Examples
                     Console.WriteLine("An example of a solve that should be able to beat the cheater at Worlde");
                     Console.ReadKey();
                     new Wordle().PlayerSolver();
+                    break;
+                case '7':
+                    Console.WriteLine("Little joke about a multiple choice quiz I had to fill out recently");
+                    Console.ReadKey();
+                    new MultipleChoice().PlayerSolver();
                     break;
             }
         }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultipleChoice.cs" />
     <Compile Include="Wordle.cs" />
     <Compile Include="Hangman.cs" />
     <Compile Include="Mastermind.cs">
